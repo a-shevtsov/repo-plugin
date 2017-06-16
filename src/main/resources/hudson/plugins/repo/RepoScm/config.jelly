@@ -64,9 +64,15 @@
 			<f:checkbox name="repo.forceSync" checked="${scm.forceSync}" />
 		</f:entry>
 
-		<f:entry title="Skip parent" help="/plugin/repo/help-skipParent.html">
-			<f:checkbox name="repo.skipParent" checked="${scm.skipParent}" />
-		</f:entry>
+		<j:if test="${descriptor.isMatrixProject(it)}">
+			<f:entry name="matrixTarget" title="Execute on" field="matrixTarget" help="/plugin/repo/help-matrixTarget.html">
+				<select name="matrixTarget">
+					<option value="buildGoal">Parent</option>
+					<option value="findBugsGoal">Axes</option>
+					<option value="findBugsGoal">Both</option>
+				</select>
+			</f:entry>
+		</j:if>
 
 		<f:entry title="No tags" help="/plugin/repo/help-noTags.html">
 			<f:checkbox name="repo.noTags" checked="${scm.noTags}" />
